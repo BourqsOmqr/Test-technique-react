@@ -4,11 +4,37 @@
   flex-direction: column;
 
   &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex: 0 0 auto;
     padding: 15px 50px;
     background: linear-gradient(75deg, #6b4192 0%, #e03d7f 42%, #f09c7f 100%);
     color: #fff;
     box-shadow: 0 0 12px rgba(0, 0, 0, .18);
+
+    & .header__menu {
+
+      & > a {
+        color: #FFF;
+        background: rgba(0, 0, 0, 0.5);
+        margin: 0 5px;
+        padding: 10px 18px;
+        border-radius: 3px;
+        font-size: 18px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition-property: all;
+        transition-duration: .2s;
+        &:hover {
+          border: none;
+          background: #fff;
+          padding: 20px 18px;
+          color: #1b1b1b;
+        }
+      }
+    }
   }
 
   &__main {
