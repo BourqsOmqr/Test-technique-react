@@ -1,0 +1,29 @@
+.todo-item {
+  font-size: 24px;
+  font-weight: 300;
+  border-bottom: 1px solid #ededed;
+  text-align: center;
+  &--title {
+    font-weight: 400;
+    padding: 15px;
+    cursor: pointer;
+  }
+  &--content {
+    margin-bottom: 10px;
+    & > p {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+    & > button {
+      margin: 8px;
+      background-color: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.23);
+      border-radius: 4px;
+      padding: 5px 15px;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+    }
+  }
+}
