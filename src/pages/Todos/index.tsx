@@ -2,42 +2,23 @@ import './index.scss';
 import React from 'react';
 import TodoItem from 'components/TodoItem';
 import Page from 'components/Page';
-import { todoList } from 'mock-data';
-
-interface ITodo {
-  id: string | number,
-  title: string,
-  content: string,
-  open: boolean
-}
+import { useTodoList } from 'hooks/useTodoList';
 
 const Todos = () => {
-  const [todos, setTodos] = React.useState<ITodo[]>([])
-
-  const handleDisplayTodo = (todoId: any, isOpen: boolean) => {
-    setTodos(todos.map(item => item.id === todoId ? ({ ...item, open: isOpen }) : item))
-  }
-
-  const handleCloseAllTodos = () => {
-    setTodos(todos.map(item => ({...item, open: false})))
-  }
-
-  React.useEffect(() => {
-    setTodos(todoList.map((item) => ({ ...item, open: false })))
-  }, [])
-
+  const { todos, counter, onToggleTodo, onCloseAll } = useTodoList();
+  const todoIds = Object.keys(todos)
   return (
     <Page className='todos'>
-      <div className='counter' onClick={handleCloseAllTodos}>{todos.filter(item => item.open).length}</div>
+      <div className='counter' onClick={onCloseAll}>{counter}</div>
       <ul className='todo-list'>
-        {todos.map((todo) => (
+        {todoIds.map((todoId) => (
           <TodoItem
-            key={todo.id}
-            title={todo.title}
-            content={todo.content}
-            onOpen={() => handleDisplayTodo(todo.id, true)}
-            onClose={() => handleDisplayTodo(todo.id, false)}
-            open={todo.open}
+            key={todoId}
+            title={todos[todoId].title}
+            content={todos[todoId].content}
+            onOpen={() => onToggleTodo(todoId, true)}
+            onClose={() => onToggleTodo(todoId, false)}
+            open={todos[todoId].open}
           />
         ))}
       </ul>
